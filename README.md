@@ -1,18 +1,14 @@
 # ✈️ AI Travel Booking System — Multi-Agent Trip Planner
 
-To preview the website check out!
-  Local URL: http://localhost:8501
-  Network URL: http://192.168.0.109:8501
-
-
 An AI-powered travel planning system where four specialized agents collaborate through a **LangGraph** state graph to research flights, hotels, and generate a complete, personalized itinerary — end to end, from a single natural-language request.
 
 ## How it works
 
 The system is a sequential multi-agent pipeline built with LangGraph:
 
+```
 START → Flight Agent → Hotel Agent → Itinerary Agent → Final Agent → END
-
+```
 
 - **✈️ Flight Agent** — searches for flights matching the user's query
 - **🏨 Hotel Agent** — finds hotel options via Tavily web search
@@ -40,45 +36,53 @@ Conversation state is persisted in **PostgreSQL** via `langgraph-checkpoint-post
 
 ## Project Structure
 
-├── main.py # LangGraph agent pipeline (backend)
-├── frontend.py # Streamlit UI
+```
+├── main.py           # LangGraph agent pipeline (backend)
+├── frontend.py        # Streamlit UI
 ├── tools/
-│ ├── flight_tool.py # Flight search integration
-│ └── tavily_tool.py # Hotel/web search integration
-├── .env # API keys & DB connection (not committed)
+│   ├── flight_tool.py  # Flight search integration
+│   └── tavily_tool.py  # Hotel/web search integration
+├── .env               # API keys & DB connection (not committed)
 └── .gitignore
+```
 
 ## Setup
 
 1. **Clone the repo**
+
 ```bash
-   git clone https://github.com/Bindukeshav/trip-planner--multi-agent-system-demo.git
-   cd trip-planner--multi-agent-system-demo
+git clone https://github.com/Bindukeshav/trip-planner--multi-agent-system-demo.git
+cd trip-planner--multi-agent-system-demo
 ```
 
 2. **Create a virtual environment and install dependencies**
+
 ```bash
-   python -m venv venv
-   source venv/Scripts/activate   # Windows (Git Bash)
-   pip install langgraph langchain langchain-openai langchain-groq langchain-community langchain-tavily "psycopg[binary]" psycopg_pool langgraph-checkpoint-postgres python-dotenv tavily-python requests streamlit
+python -m venv venv
+source venv/Scripts/activate   # Windows (Git Bash)
+pip install langgraph langchain langchain-openai langchain-groq langchain-community langchain-tavily "psycopg[binary]" psycopg_pool langgraph-checkpoint-postgres python-dotenv tavily-python requests streamlit
 ```
 
 3. **Set up your `.env` file**
 
-4. GROQ_API_KEY=your_groq_key
+```
+GROQ_API_KEY=your_groq_key
 TAVILY_API_KEY=your_tavily_key
 DATABASE_URL=postgresql://user:password@localhost:5432/your_db
+```
 
 4. **Run it**
 
-   CLI mode:
+CLI mode:
+
 ```bash
-   python main.py
+python main.py
 ```
 
-   Web UI:
+Web UI:
+
 ```bash
-   streamlit run frontend.py
+streamlit run frontend.py
 ```
 
 ## Example
@@ -88,10 +92,5 @@ DATABASE_URL=postgresql://user:password@localhost:5432/your_db
 The system searches flights, finds hotels, builds a day-by-day itinerary, and returns a complete downloadable travel plan.
 
 ---
+
 Built by [Bindu Keshav](https://github.com/Bindukeshav)
-
-
-# paste the content above into README.md via VS Code, then:
-git add README.md
-git commit -m "Add project README"
-git push
