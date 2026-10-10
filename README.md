@@ -1,6 +1,10 @@
-# ✈️ Multi-Agent Trip Planner.
+# ✈️ Multi-Agent Trip Planner
 
 An AI-powered travel planning system where four specialized agents collaborate through a **LangGraph** state graph to research flights, hotels, and generate a complete, personalized itinerary — end to end, from a single natural-language request.
+
+![App screenshot](screenshot.png)
+
+
 
 ## How it works
 
@@ -25,7 +29,7 @@ Conversation state is persisted in **PostgreSQL** via `langgraph-checkpoint-post
 - **AviationStack API** — flight search data
 - **PostgreSQL** — persistent conversation checkpointing
 - **Streamlit** — interactive frontend UI
-- **Python** (`psycopg`, `python-dotenv`, `langchain-groq`, `langchain-community`)
+- **Python** (`psycopg`, `python-dotenv`, `langchain-groq`)
 
 ## Features
 
@@ -37,41 +41,51 @@ Conversation state is persisted in **PostgreSQL** via `langgraph-checkpoint-post
 ## Project Structure
 
 ```
-├── main.py           # LangGraph agent pipeline (backend)
-├── frontend.py        # Streamlit UI
+├── main.py             # LangGraph agent pipeline (backend)
+├── frontend.py         # Streamlit UI
 ├── tools/
 │   ├── flight_tool.py  # Flight search integration
 │   └── tavily_tool.py  # Hotel/web search integration
-├── .env               # API keys & DB connection (not committed)
+├── requirements.txt    # Python dependencies
+├── .env.example        # Template for API keys and DB connection
 └── .gitignore
 ```
 
 ## Setup
 
+**Prerequisites:** Python 3.11+, a running PostgreSQL instance, and free API keys from [Groq](https://console.groq.com), [Tavily](https://tavily.com) and [AviationStack](https://aviationstack.com).
+
 1. **Clone the repo**
 
 ```bash
-git clone https://github.com/Bindukeshav/trip-planner--multi-agent-system-demo.git
-cd trip-planner--multi-agent-system-demo
+git clone https://github.com/Bindukeshav/multi-agent-trip-planner.git
+cd multi-agent-trip-planner
 ```
 
 2. **Create a virtual environment and install dependencies**
 
 ```bash
 python -m venv venv
-source venv/Scripts/activate   # Windows (Git Bash)
-pip install langgraph langchain langchain-openai langchain-groq langchain-community langchain-tavily "psycopg[binary]" psycopg_pool langgraph-checkpoint-postgres python-dotenv tavily-python requests streamlit
+source venv/Scripts/activate   # Windows (Git Bash); on macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-3. **Set up your `.env` file**
+3. **Create the PostgreSQL database**
+
+```bash
+psql -U postgres -c "CREATE DATABASE tripplanner;"
+```
+
+4. **Set up your `.env` file** (copy `.env.example` to `.env` and fill it in)
 
 ```
 GROQ_API_KEY=your_groq_key
 TAVILY_API_KEY=your_tavily_key
-DATABASE_URL=postgresql://user:password@localhost:5432/your_db
+AVIATIONSTACK_API_KEY=your_aviationstack_key
+DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/tripplanner
 ```
 
-4. **Run it**
+5. **Run it**
 
 CLI mode:
 
@@ -82,7 +96,7 @@ python main.py
 Web UI:
 
 ```bash
-streamlit run frontend.py
+python -m streamlit run frontend.py
 ```
 
 ## Example
@@ -90,6 +104,16 @@ streamlit run frontend.py
 > "Plan a complete 7-day Japan trip including flights, hotels and sightseeing under ₹2 lakhs"
 
 The system searches flights, finds hotels, builds a day-by-day itinerary, and returns a complete downloadable travel plan.
+
+## Limitations
+
+- Runs on free-tier API plans, so request limits and result depth are restricted.
+- Flight data comes from AviationStack, which provides schedule and status information rather than live ticket prices. Treat costs in the itinerary as estimates.
+- Sequential pipeline: each agent waits for the previous one, so a full plan takes a few seconds to generate.
+
+## Results
+
+Measurements in progress.
 
 ---
 
