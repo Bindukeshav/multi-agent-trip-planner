@@ -2,7 +2,7 @@
 
 An AI-powered travel planning system where four specialized agents collaborate through a **LangGraph** state graph to research flights, hotels, and generate a complete, personalized itinerary — end to end, from a single natural-language request.
 
-![App screenshot](123.png,1234.png)
+![App screenshot](123.png)
 
 
 
