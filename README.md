@@ -1,4 +1,4 @@
-# ✈️ AI Travel Booking System — Multi-Agent Trip Planner
+# ✈️ Multi-Agent Trip Planner.
 
 An AI-powered travel planning system where four specialized agents collaborate through a **LangGraph** state graph to research flights, hotels, and generate a complete, personalized itinerary — end to end, from a single natural-language request.
 
