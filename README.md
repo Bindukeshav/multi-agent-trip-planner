@@ -26,7 +26,7 @@ Conversation state is persisted in **PostgreSQL** via `langgraph-checkpoint-post
 ## Tech Stack
 
 - **LangGraph** — multi-agent orchestration and state management
-- **Groq** (LLaMA 3.3 70B) — fast LLM inference for itinerary generation
+- **Groq** (GPT-OSS 120B) — fast LLM inference for itinerary generation
 - **Tavily Search API** — real-time hotel/web search
 - **AviationStack API** — flight search data
 - **PostgreSQL** — persistent conversation checkpointing
