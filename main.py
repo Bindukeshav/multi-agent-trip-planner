@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile"
+        model="openai/gpt-oss-120b"
 )
 DATABASE_URL = os.getenv("DATABASE_URL")
 with Connection.connect(DATABASE_URL, autocommit=True) as conn:
