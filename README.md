@@ -3,6 +3,7 @@
 An AI-powered travel planning system where four specialized agents collaborate through a **LangGraph** state graph to research flights, hotels, and generate a complete, personalized itinerary — end to end, from a single natural-language request.
 
 **Live demo:** https://multi-agent-trip-planner-ic0r.onrender.com (free tier, so the first load may take about a minute)
+**Loom demo:** https://www.loom.com/share/417a7ca72a4e4fe680a53df635a2f689
 
 ![App screenshot](123.png)
 Local URL: http://localhost:8501
