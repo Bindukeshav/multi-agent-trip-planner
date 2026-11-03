@@ -5,7 +5,7 @@ An AI-powered travel planning system where four specialized agents collaborate t
 **Live demo:** https://multi-agent-trip-planner-ic0r.onrender.com (free tier, so the first load may take about a minute)
 
 ![App screenshot](123.png)
-
+Local URL: http://localhost:8501
 
 
 ## How it works
